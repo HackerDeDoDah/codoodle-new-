@@ -1,0 +1,452 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+/* Landing page styles */
+.landing-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #2b3044, #1e1e2f);
+}
+
+.landing-content {
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: rgba(40, 44, 52, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.landing-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.landing-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #a8a8a8;
+}
+
+.start-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #4a5568, #2d3748);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+}
+
+/* Editor page styles */
+.nav-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.home-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.home-nav:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 0.5rem;
+    background-color: #2d2d2d;
+    border-radius: 5px;
+    padding: 0.5rem;
+    min-width: 150px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.menu-dropdown.active {
+    display: block;
+}
+
+.menu-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+}
+
+.menu-dropdown button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.tips-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.tips-button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.tips-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 450px) {
+    .tips-button {
+        display: none;
+    }
+}
+
+.tips-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background-color: #2d2d2d;
+    border-radius: 5px;
+    padding: 1rem;
+    min-width: 300px;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.tips-dropdown.active {
+    display: block;
+}
+
+.tips-content h4 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.shortcut {
+    display: flex;
+    align-items: center;
+    background-color: #222222;
+    border-radius: 5px;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    padding: 10px;
+}
+
+kbd {
+    background-color: #444;
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+.shortcut span {
+    color: #a8a8a8;
+}
+
+h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.placeholder {
+    display: none;
+    text-align: center;
+    height: 40px;
+}
+
+@media (max-width: 675px) {
+    h3 {
+        display: none;
+    }
+    .placeholder  {
+        display: block;
+    }
+}
+
+.main-container {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    height: calc(100vh - 60px);
+}
+
+.editors-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 50%;
+}
+
+.preview-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.editor-folder {
+    background-color: #2d2d2d;
+    border-radius: 5px;
+    padding: 0 15px;
+    flex: 1;
+    height: calc(160px - 0.5rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-folder.hidden {
+    display: none;
+}
+
+.editor-folder.expanded {
+    height: calc(100vh - 120px);
+}
+
+.editor-folder.expanded .CodeMirror {
+    height: calc(100vh - 160px) !important;
+    flex: 1;
+}
+
+/* Override the default editor heights when expanded */
+.editor-folder.expanded:first-child .CodeMirror {
+    height: calc(100vh - 160px) !important;
+    margin-bottom: 15px;
+}
+
+.editor-folder.expanded .editor-wrapper {
+    height: 100% !important;
+}
+
+.editor-wrapper {
+    display: flex;
+    background-color: #1e1e1e;
+    border-radius: 5px;
+    margin-top: 0.5rem;
+    flex: 1;
+    min-height: 0;
+    height: 100%;
+}
+
+.line-numbers {
+    padding: 1rem 0.5rem;
+    border-right: 1px solid #444;
+    text-align: right;
+    color: #888;
+    font-family: monospace;
+    user-select: none;
+    background-color: #252525;
+    border-radius: 5px 0 0 5px;
+    line-height: 1.5;
+    white-space: pre;
+}
+
+.editor {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    resize: none;
+    font-family: monospace;
+    background-color: #1e1e1e;
+    color: #fff;
+    line-height: 1.5;
+}
+
+/* CodeMirror Customization */
+.CodeMirror {
+    position: relative;
+    height: 320px !important;
+    border-radius: 5px;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.CodeMirror-scroll {
+    height: 100%;
+}
+
+.CodeMirror-gutters {
+    background-color: #252525 !important;
+    border-right: 1px solid #444 !important;
+    border-radius: 5px 0 0 5px;
+}
+
+.CodeMirror-linenumber {
+    color: #888 !important;
+}
+
+p {
+    padding: 5px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.preview-container {
+    flex: 1;
+    margin: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 320px;
+}
+
+#preview {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/* Cookie Consent Styles */
+.cookie-consent {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2d2d2d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    z-index: 1001; /* Higher than the overlay */
+    width: 90%;
+    max-width: 400px;
+    display: none;
+}
+
+.cookie-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+    display: none;
+}
+
+.cookie-content {
+    text-align: center;
+}
+
+.cookie-content p {
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.cookie-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cookie-policy {
+    color: #a8a8a8;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: color 0.3s;
+}
+
+.cookie-policy:hover {
+    color: #fff;
+}
+
+.accept-cookies {
+    background: linear-gradient(135deg, #4a5568, #2d3748);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.accept-cookies:hover {
+    transform: scale(1.05);
+}
+
+

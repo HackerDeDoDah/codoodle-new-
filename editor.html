@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codoodle | Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/dracula.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="nav-container">
+        <a href="index.html" class="home-nav">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+            </svg>
+            Home
+        </a>
+        <div class="menu-container">
+            <button class="menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                    <path fill="currentColor" d="M14 17h-4v-2h4v2zm5-5H5v-2h14v2z"/>
+                </svg>
+                File
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                    <path fill="currentColor" d="M7 10l5 5 5-5H7z"/>
+                </svg>
+            </button>
+            <button class="menu-button css-art-button" id="cssArtButton">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                    <circle cx="12" cy="12" r="10" fill="#8be9fd"/>
+                    <rect x="7" y="7" width="10" height="10" fill="#ffb86c"/>
+                </svg>
+                CSS Shape Examples
+            </button>
+            <div class="menu-dropdown">
+                <button id="saveButton">Save to Device</button>
+                <button id="loadButton">Load from Device</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tips-container">
+        <button class="tips-button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/>
+            </svg>
+            Tips
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M7 10l5 5 5-5H7z"/>
+            </svg>
+        </button>
+        <div class="tips-dropdown">
+            <div class="tips-content">
+                <h4>Keyboard Shortcuts</h4>
+                <div class="shortcut">
+                    <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>1</kbd>
+                    <span>Insert basic HTML template</span>
+                </div>
+                <div class="shortcut">
+                    <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>2</kbd>
+                    <span>Insert email HTML template</span>
+                </div>
+                <div class="shortcut">
+                    <span>You can also drag & drop your HTML and CSS files into the corresponding editors.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>HTML Playground</h3>
+    <div class="placeholder"></div>
+    <div class="main-container">
+        <div class="editors-section">
+            <div class="editor-folder">
+                <p>HTML</p>
+                <textarea id="html"></textarea>
+            </div>
+            <div class="editor-folder">
+                <p>CSS</p>
+                <textarea id="css"></textarea>
+            </div>
+        </div>
+        <div class="preview-section">
+            <p>PREVIEW</p>
+            <div class="preview-container">
+                <iframe id="preview"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="cookie-overlay" id="cookie-overlay"></div>
+    <div id="cookie-consent" class="cookie-consent">
+        <div class="cookie-content">
+            <p>This website uses cookies to ensure you get the best experience. By continuing to use this site, you consent to our use of cookies.</p>
+            <div class="cookie-buttons">
+                <a href="https://policies.google.com/privacy" target="_blank" class="cookie-policy">Privacy Policy</a>
+                <button id="accept-cookies" class="accept-cookies">Accept</button>
+            </div>
+        </div>
+    </div>
+    <!-- CSS Art Modal -->
+    <div id="cssArtModal" class="css-art-modal" style="display:none;">
+        <div class="css-art-modal-content">
+            <span class="close-css-art">&times;</span>
+            <h3>CSS Shape Examples</h3>
+            <label for="cssArtShapeSelect">Choose a shape:</label>
+            <select id="cssArtShapeSelect">
+                <option value="circle">Circle</option>
+                <option value="square">Square</option>
+                <option value="triangle">Triangle</option>
+                <option value="heart">Heart</option>
+                <option value="star">Star</option>
+                <option value="diamond">Diamond</option>
+                <option value="moon">Moon</option>
+            </select>
+            <div class="css-art-preview">
+                <div class="css-art-sample" id="cssArtSampleContainer">
+                    <!-- CSS Art will be rendered here -->
+                    <div class="art-circle"></div>
+                </div>
+            </div>
+            <div class="css-art-code">
+                <label>HTML:</label>
+                <pre><code id="cssArtHtmlCode">&lt;div class=&quot;art-circle&quot;&gt;&lt;/div&gt;</code></pre>
+                <button class="copy-css-art-html">Copy HTML</button>
+                <label>CSS:</label>
+                <pre><code id="cssArtCssCode">.art-circle {
+                    width: 100px;
+                    height: 100px;
+                    background: linear-gradient(135deg, #8be9fd 60%, #ffb86c 100%);
+                    border-radius: 50%;
+                    margin: 20px auto;
+                    box-shadow: 0 4px 24px #4442;
+                }</code></pre>
+                <button class="copy-css-art-css">Copy CSS</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closetag.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/keymap/sublime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/comment/comment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/selection/active-line.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/display/placeholder.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/continuelist.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
