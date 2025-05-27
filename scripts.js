@@ -314,12 +314,12 @@ const cssArtSampleContainer = document.getElementById('cssArtSampleContainer');
 const cssArtExamples = {
     circle: {
         html: '<div class="art-circle"></div>',
-        css: `.art-circle {\n  width: 100px;\n  height: 100px;\n  background: linear-gradient(135deg, #8be9fd 60%, #ffb86c 100%);\n  border-radius: 50%;\n  margin: 20px auto;\n  box-shadow: 0 4px 24px #4442;\n}`,
+        css: `.art-circle {\n  width: 100px;\n  height: 100px;\n  background:  #8be9fd;\n  border-radius: 50%;\n  margin: 20px auto;\n  box-shadow: 0 4px 24px #4442;\n}`,
         render: '<div class="art-circle"></div>'
     },
     square: {
         html: '<div class="art-square"></div>',
-        css: `.art-square {\n  width: 100px;\n  height: 100px;\n  background: linear-gradient(135deg, #ff79c6 60%, #50fa7b 100%);\n  border-radius: 16px;\n  margin: 20px auto;\n  box-shadow: 0 4px 24px #4442;\n}`,
+        css: `.art-square {\n  width: 100px;\n  height: 100px;\n  background:  #50fa7b;\n  border-radius: 16px;\n  margin: 20px auto;\n  box-shadow: 0 4px 24px #4442;\n}`,
         render: '<div class="art-square"></div>'
     },
     triangle: {
