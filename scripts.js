@@ -399,3 +399,29 @@ if (copyCssBtn && cssArtCssCode) {
         setTimeout(() => copyCssBtn.textContent = 'Copy CSS', 1200);
     });
 }
+
+// Sidebar functionality
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+const sidebar = document.getElementById('sidebar');
+const mainContainer = document.querySelector('.main-container');
+const navContainer = document.querySelector('.nav-container');
+
+hamburgerMenu?.addEventListener('click', () => {
+    sidebar?.classList.toggle('active');
+    mainContainer?.classList.toggle('sidebar-active');
+    navContainer?.classList.toggle('sidebar-active');
+});
+
+// Close sidebar when clicking outside
+document.addEventListener('click', (e) => {
+    if (!sidebar?.contains(e.target) && 
+        !hamburgerMenu?.contains(e.target) && 
+        sidebar?.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        mainContainer?.classList.remove('sidebar-active');
+        navContainer?.classList.remove('sidebar-active');
+    }
+});
+
+// Initialize CodeMirror editors for editor.html
+// ...existing code...
