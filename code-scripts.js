@@ -12,7 +12,22 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
     keyMap: 'sublime',
     extraKeys: {
         "Shift-Ctrl-1": insertBasicTemplate,
-        "Shift-Ctrl-2": insertEmailTemplate
+        "Shift-Ctrl-2": insertEmailTemplate,
+        "Enter": "newlineAndIndentContinueComment",
+        "Tab": "autocomplete"
+    }
+});
+
+// Configure HTML editor to keep tags on same line
+htmlEditor.on('beforeChange', (cm, change) => {
+    if (change.origin === '+input' && change.text[0] === '>') {
+        const line = cm.getLine(change.from.line);
+        const tagMatch = line.slice(0, change.from.ch).match(/<[\w-]+$/);
+        if (tagMatch) {
+            const tagName = tagMatch[0].slice(1);
+            change.cancel();
+            cm.replaceRange('></' + tagName + '>', change.from);
+        }
     }
 });
 
@@ -24,7 +39,11 @@ const cssEditor = CodeMirror.fromTextArea(document.getElementById('css'), {
     matchBrackets: true,
     lineWrapping: true,
     tabSize: 2,
-    scrollbarStyle: null
+    scrollbarStyle: null,
+    extraKeys: {
+        "Enter": "newlineAndIndentContinueComment",
+        "Tab": "autocomplete"
+    }
 });
 
 // Menu functionality
@@ -53,7 +72,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-Save and Load functionality
+// Save and Load functionality
 document.getElementById('saveButton').addEventListener('click', () => {
     const content = {
         html: htmlEditor.getValue(),

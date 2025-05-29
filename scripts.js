@@ -3,7 +3,11 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
     mode: 'htmlmixed',
     theme: 'dracula',
     lineNumbers: true,
-    autoCloseTags: true,
+    autoCloseTags: {
+        whenClosing: true,
+        whenOpening: true,
+        indentTags: []
+    },
     autoCloseBrackets: true,
     matchBrackets: true,
     lineWrapping: true,
@@ -12,7 +16,32 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
     keyMap: 'sublime',
     extraKeys: {
         "Shift-Ctrl-1": insertBasicTemplate,
-        "Shift-Ctrl-2": insertEmailTemplate
+        "Shift-Ctrl-2": insertEmailTemplate,
+        "Ctrl-Space": "autocomplete",
+        "Enter": function(cm) {
+            const cursor = cm.getCursor();
+            const token = cm.getTokenAt(cursor);
+            if (token.type && token.type.includes("tag")) {
+                return CodeMirror.Pass; // Let default handling occur for tags
+            }
+            cm.execCommand("newlineAndIndent");
+        }
+    }
+});
+
+// Add a custom handler for tag completion
+htmlEditor.on("beforeChange", function(cm, change) {
+    if (change.origin === "+input" && change.text[0] === ">") {
+        const cursor = cm.getCursor();
+        const line = cm.getLine(cursor.line);
+        const beforeCursor = line.slice(0, cursor.ch);
+        const tagMatch = beforeCursor.match(/<(\w+)$/);
+        if (tagMatch) {
+            const tagName = tagMatch[1];
+            change.cancel();
+            cm.replaceRange(">" + "</" + tagName + ">", cursor);
+            return;
+        }
     }
 });
 
