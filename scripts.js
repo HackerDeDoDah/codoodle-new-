@@ -358,7 +358,7 @@ const cssArtExamples = {
     },
     heart: {
         html: '<div class="art-heart"></div>',
-        css: `.art-heart {\n  position: relative;\n  width: 100px;\n  height: 90px;\n  background-color: red;\n  transform: rotate(-45deg);\n  margin: 50px auto;\n}\n\n.art-heart::before,\n.art-heart::after {\n  content: "";\n  position: absolute;\n  width: 100px;\n  height: 90px;\n  background-color: red;\n  border-radius: 50%;\n}\n\n.art-heart::before {\n  top: -50px;\n  left: 0;\n}\n\n.art-heart::after {\n  top: 0;\n  left: 50px;\n}\n`,
+        css: `.art-heart {\n  position: relative;\n  width: 100px;\n  height: 100px;\n  background-color: red;\n  transform: rotate(-45deg);\n  margin: 50px auto;\n}\n\n.art-heart::before,\n.art-heart::after {\n  content: "";\n  position: absolute;\n  width: 100px;\n  height: 90px;\n  background-color: red;\n  border-radius: 50%;\n}\n\n.art-heart::before {\n  top: -50px;\n  left: 0;\n}\n\n.art-heart::after {\n  top: 0;\n  left: 50px;\n}\n`,
         render: '<div class="art-heart"></div>'
     },
     star: {
