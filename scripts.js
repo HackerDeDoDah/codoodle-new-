@@ -22,7 +22,7 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
             const cursor = cm.getCursor();
             const token = cm.getTokenAt(cursor);
             if (token.type && token.type.includes("tag")) {
-                return CodeMirror.Pass; // Let default handling occur for tags
+                return CodeMirror.Pass; 
             }
             cm.execCommand("newlineAndIndent");
         }
@@ -129,88 +129,6 @@ document.getElementById('loadButton').addEventListener('click', () => {
     input.click();
     menuDropdown.classList.remove('active');
 });
-
-// document.getElementById('saveHTMLButton').addEventListener('click', () => {
-//     const htmlContent = htmlEditor.getValue();
-//     const htmlBlob = new Blob([htmlContent], { type: 'text/html' });
-//     const htmlUrl = URL.createObjectURL(htmlBlob);
-
-//     const a = document.createElement('a');
-//     a.href = htmlUrl;
-//     a.download = 'index.html';
-//     document.body.appendChild(a);
-//     a.click();
-
-//     document.body.removeChild(a);
-//     URL.revokeObjectURL(htmlUrl);
-//     menuDropdown.classList.remove('active');
-// });
-
-// document.getElementById('saveCSSButton').addEventListener('click', () => {
-//     const cssContent = cssEditor.getValue();
-//     const cssBlob = new Blob([cssContent], { type: 'text/css' });
-//     const cssUrl = URL.createObjectURL(cssBlob);
-
-//     const a = document.createElement('a');
-//     a.href = cssUrl;
-//     a.download = 'styles.css';
-//     document.body.appendChild(a);
-//     a.click();
-
-//     document.body.removeChild(a);
-//     URL.revokeObjectURL(cssUrl);
-//     menuDropdown.classList.remove('active');
-// });
-
-// document.getElementById('loadHTMLButton').addEventListener('click', () => {
-//     const input = document.createElement('input');
-//     input.type = 'file';
-//     input.accept = '.html';
-
-//     input.addEventListener('change', (e) => {
-//         const file = e.target.files[0];
-//         const reader = new FileReader();
-
-//         reader.addEventListener('load', () => {
-//             try {
-//                 htmlEditor.setValue(reader.result);
-//                 updatePreview();
-//             } catch (err) {
-//                 alert('Error loading file: Invalid format');
-//             }
-//         });
-
-//         reader.readAsText(file);
-//     });
-
-//     input.click();
-//     menuDropdown.classList.remove('active');
-// });
-
-// document.getElementById('loadCSSButton').addEventListener('click', () => {
-//     const input = document.createElement('input');
-//     input.type = 'file';
-//     input.accept = '.css';
-
-//     input.addEventListener('change', (e) => {
-//         const file = e.target.files[0];
-//         const reader = new FileReader();
-
-//         reader.addEventListener('load', () => {
-//             try {
-//                 cssEditor.setValue(reader.result);
-//                 updatePreview();
-//             } catch (err) {
-//                 alert('Error loading file: Invalid format');
-//             }
-//         });
-
-//         reader.readAsText(file);
-//     });
-
-//     input.click();
-//     menuDropdown.classList.remove('active');
-// });
 
 // Template definitions
 const basicTemplate = `<!DOCTYPE html>
@@ -452,5 +370,18 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Initialize CodeMirror editors for editor.html
-// ...existing code...
+// Lorem Ipsum text
+const loremIpsumText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. `;
+
+function insertLoremIpsum(cm) {
+    const doc = cm.getDoc();
+    const cursor = doc.getCursor();
+    doc.replaceRange(loremIpsumText, cursor);
+    cm.focus();
+}
+
+// Add shortcut to CodeMirror extraKeys
+htmlEditor.setOption('extraKeys', {
+    ...htmlEditor.getOption('extraKeys'),
+    'Shift-Ctrl-L': insertLoremIpsum
+});
