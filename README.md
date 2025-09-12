@@ -2,7 +2,7 @@ This is a simple html and css code editor for anyone learning web developement.
 
 Use it as much as you want, let me know if there is anything you want added.
 
-For best experience use a PC or laptop. If using iPad or mobile, please use a external keyboard.
+For best experience use a PC or laptop.
 
 Typing CTRL+SHIFT+1 will get you a basic HTML layout.
 
@@ -48,4 +48,10 @@ Typing CTRL+SHIFT+2 will get you a basic HTML EMAIL layout.
     </table>
 </body>
 </html>
+```
+
+Typing CTRL+SHIFT+L will insert a short Loren Ipsum paragraph.
+
+```
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.
 ```

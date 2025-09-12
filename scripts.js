@@ -11,7 +11,7 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
     autoCloseBrackets: true,
     matchBrackets: true,
     lineWrapping: true,
-    tabSize: 2,
+    tabSize: 4,
     scrollbarStyle: null,
     keyMap: 'sublime',
     extraKeys: {
@@ -352,21 +352,37 @@ const hamburgerMenu = document.getElementById('hamburgerMenu');
 const sidebar = document.getElementById('sidebar');
 const mainContainer = document.querySelector('.main-container');
 const navContainer = document.querySelector('.nav-container');
+const hamburgerIcon = document.getElementById('hamburgerIcon');
 
-hamburgerMenu?.addEventListener('click', () => {
+const hamburgerSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>`;
+const crossSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 0 0-1.41 1.41L10.59 12l-4.89 4.89a1 1 0 1 0 1.41 1.41L12 13.41l4.89 4.89a1 1 0 0 0 1.41-1.41L13.41 12l4.89-4.89a1 1 0 0 0 0-1.4z"/></svg>`;
+
+function updateHamburgerIcon() {
+    if (sidebar?.classList.contains('active')) {
+        hamburgerIcon.innerHTML = crossSVG;
+    } else {
+        hamburgerIcon.innerHTML = hamburgerSVG;
+    }
+}
+
+hamburgerMenu?.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent document click from firing
     sidebar?.classList.toggle('active');
     mainContainer?.classList.toggle('sidebar-active');
     navContainer?.classList.toggle('sidebar-active');
+    updateHamburgerIcon();
 });
 
-// Close sidebar when clicking outside
+// Close sidebar and update icon when clicking outside
 document.addEventListener('click', (e) => {
-    if (!sidebar?.contains(e.target) && 
-        !hamburgerMenu?.contains(e.target) && 
-        sidebar?.classList.contains('active')) {
+    // Use closest() to check if click is inside sidebar or hamburger button (including all descendants)
+    const isSidebar = e.target.closest('#sidebar');
+    const isHamburger = e.target.closest('#hamburgerMenu');
+    if (!isSidebar && !isHamburger && sidebar?.classList.contains('active')) {
         sidebar.classList.remove('active');
         mainContainer?.classList.remove('sidebar-active');
         navContainer?.classList.remove('sidebar-active');
+        updateHamburgerIcon();
     }
 });
 
