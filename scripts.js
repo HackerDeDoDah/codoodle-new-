@@ -11,9 +11,10 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
     autoCloseBrackets: true,
     matchBrackets: true,
     lineWrapping: true,
-    tabSize: 4,
+    tabSize: 2,
     scrollbarStyle: null,
     keyMap: 'sublime',
+    minimap: true,
     extraKeys: {
         "Shift-Ctrl-1": insertBasicTemplate,
         "Shift-Ctrl-2": insertEmailTemplate,
@@ -28,6 +29,7 @@ const htmlEditor = CodeMirror.fromTextArea(document.getElementById('html'), {
         }
     }
 });
+htmlEditor.getWrapperElement().classList.add('CodeMirror-wrap');
 
 // Add a custom handler for tag completion
 htmlEditor.on("beforeChange", function(cm, change) {
@@ -53,8 +55,10 @@ const cssEditor = CodeMirror.fromTextArea(document.getElementById('css'), {
     matchBrackets: true,
     lineWrapping: true,
     tabSize: 2,
-    scrollbarStyle: null
+    scrollbarStyle: null,
+    minimap: true
 });
+cssEditor.getWrapperElement().classList.add('CodeMirror-wrap');
 
 // Menu functionality
 const menuButton = document.querySelector('.menu-button');
@@ -191,7 +195,9 @@ function showEmailEditor() {
     htmlFolder.classList.add('expanded');
     cssFolder.classList.add('hidden');
     cssEditor.setValue('');
+    htmlEditor.setOption('lineWrapping', true);
     htmlEditor.refresh();
+    htmlEditor.getWrapperElement().classList.add('CodeMirror-wrap');
 }
 
 function showBothEditors() {
@@ -200,8 +206,12 @@ function showBothEditors() {
     
     htmlFolder.classList.remove('expanded');
     cssFolder.classList.remove('hidden');
+    htmlEditor.setOption('lineWrapping', true);
+    cssEditor.setOption('lineWrapping', true);
     htmlEditor.refresh();
     cssEditor.refresh();
+    htmlEditor.getWrapperElement().classList.add('CodeMirror-wrap');
+    cssEditor.getWrapperElement().classList.add('CodeMirror-wrap');
 }
 
 // Update preview function

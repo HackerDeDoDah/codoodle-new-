@@ -283,7 +283,9 @@ h3 {
     border-radius: 5px;
     padding: 0 15px;
     flex: 1;
-    height: calc(160px - 0.5rem);
+    height: 320px;
+    max-height: 320px;
+    min-height: 160px;
     display: flex;
     flex-direction: column;
 }
@@ -293,17 +295,18 @@ h3 {
 }
 
 .editor-folder.expanded {
-    height: calc(100vh - 120px);
+    height: 320px;
+    max-height: 320px;
 }
 
 .editor-folder.expanded .CodeMirror {
-    height: calc(100vh - 160px) !important;
+    height: 100% !important;
     flex: 1;
 }
 
 /* Override the default editor heights when expanded */
 .editor-folder.expanded:first-child .CodeMirror {
-    height: calc(100vh - 160px) !important;
+    height: 100% !important;
     margin-bottom: 15px;
 }
 
@@ -350,7 +353,7 @@ h3 {
 /* CodeMirror Customization */
 .CodeMirror {
     position: relative;
-    height: 320px !important;
+    height: 100% !important;
     border-radius: 5px;
     font-family: 'Consolas', monospace;
     font-size: 14px;
