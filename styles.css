@@ -295,18 +295,20 @@ h3 {
 }
 
 .editor-folder.expanded {
-    height: 320px;
-    max-height: 320px;
+    height: 640px;
+    max-height: 640px;
 }
 
 .editor-folder.expanded .CodeMirror {
     height: 100% !important;
+    min-height: 400px;
     flex: 1;
 }
 
 /* Override the default editor heights when expanded */
 .editor-folder.expanded:first-child .CodeMirror {
     height: 100% !important;
+    min-height: 400px;
     margin-bottom: 15px;
 }
 
