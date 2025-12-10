@@ -240,7 +240,7 @@ h3 {
     height: 40px;
 }
 
-@media (max-width: 675px) {
+@media (max-width: 775px) {
     h3 {
         display: none;
     }
