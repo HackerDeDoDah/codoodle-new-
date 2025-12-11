@@ -249,6 +249,12 @@ h3 {
     }
 }
 
+@media (max-width: 610px) {
+    #cssArtButton {
+        display: none;
+    }
+}
+
 .main-container {
     display: flex;
     gap: 1rem;
